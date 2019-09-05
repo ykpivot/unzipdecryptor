@@ -49,30 +49,38 @@ $ java -jar build/libs/FileProcessor-0.0.1-SNAPSHOT.jar ud test.zip txt
 
 ## Performance Test Result
 
-The MacOS's `time` utility is used to capture performance data.
+The MacOS's `time` utility is used to capture performance data. The size of the test file was 10.9 GB,
+whereas the decrypted and zipped version was also 10.9 GB. The test was conducted on a 
+MacBook Pro with 16GB RAM and quite a few apps including Chrome with 32 open tabs running. :-P
 
-When unzipping using the app:
+### When unzipping using the app:
+
+It took 74.16 seconds and used up 194 MB of memory at peak.
 
 ```
-$ /usr/bin/time -l java -jar build/libs/FileProcessor-0.0.1-SNAPSHOT.jar
+$ /usr/bin/time -l java -jar build/libs/FileProcessor-0.0.1-SNAPSHOT.jar u 10gb.zip txt
 
        74.16 real        39.43 user        16.31 sys
  193961984  maximum resident set size
 ```
 
-When decrypting using the app:
+### When decrypting using the app:
+
+Decryption took a lot longer, as expected. It took 4 Minutes and 36 Seconds and used up 277 MB of memory at peak.
 
 ```
-$ /usr/bin/time -l java -jar build/libs/FileProcessor-0.0.1-SNAPSHOT.jar
+$ /usr/bin/time -l java -jar build/libs/FileProcessor-0.0.1-SNAPSHOT.jar d 10gb.txt
 
       276.25 real        75.18 user       118.17 sys
  277356544  maximum resident set size
 ```
 
-When doing both - unzipping and then decrypting - using the app:
+### When doing both - unzipping and then decrypting - using the app:
+
+It took 13 Minutes and 10 Seconds and used up 261 MB of memory at peak.
 
 ```
-/usr/bin/time -l java -jar build/libs/FileProcessor-0.0.1-SNAPSHOT.jar ud /Users/ykim/workspace/sample-files/test/original-10gb-encrypted.zip txt
+/usr/bin/time -l java -jar build/libs/FileProcessor-0.0.1-SNAPSHOT.jar ud 10gb.zip txt
 
       790.69 real       188.58 user       264.03 sys
  261152768  maximum resident set size
