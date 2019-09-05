@@ -33,6 +33,15 @@ $ /usr/bin/time -l java -jar build/libs/FileProcessor-0.0.1-SNAPSHOT.jar
  277356544  maximum resident set size
 ```
 
+When doing both - unzipping and then decrypting - using the app:
+
+```
+/usr/bin/time -l java -jar build/libs/FileProcessor-0.0.1-SNAPSHOT.jar ud /Users/ykim/workspace/sample-files/test/original-10gb-encrypted.zip txt
+
+      790.69 real       188.58 user       264.03 sys
+ 261152768  maximum resident set size
+```
+
 For reference, when using the MacOS native `unzip` command:
 
 ```
