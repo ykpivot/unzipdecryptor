@@ -13,6 +13,8 @@ repositories {
 }
 
 dependencies {
+	compile 'org.encryptor4j:encryptor4j:0.1.2'
+	compile 'org.bouncycastle:bcprov-jdk15on:1.58'
 	implementation 'org.springframework.boot:spring-boot-starter'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

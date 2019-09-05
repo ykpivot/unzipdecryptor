@@ -2,10 +2,7 @@ package com.yk.FileProcessor;
 
 import org.springframework.stereotype.Component;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -22,11 +19,18 @@ public class Unzipper {
             System.out.println("entry: " + entry.getName() + ", " + entry.getSize());
 
             FileOutputStream fout = new FileOutputStream(outputFile);
+            BufferedOutputStream bufout = new BufferedOutputStream(fout);
 
-            while (zis.available() > 0) {
-                fout.write(zis.read());
+            byte[] buffer = new byte[1024];
+            int read;
+            while ((read = zis.read(buffer)) != -1) {
+                bufout.write(buffer, 0, read);
             }
+
+            zis.closeEntry();
+            bufout.close();
             fout.close();
         }
+        zis.close();
     }
 }
